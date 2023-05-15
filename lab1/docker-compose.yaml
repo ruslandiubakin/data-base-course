@@ -34,8 +34,9 @@ services:
     networks:
       - lab1
     volumes:
-     - ./app/main.py:/usr/src/app/main.py
-     - ./app:/usr/src/app
+     - ./app/main.py:/app/main.py
+     - ./app/result.csv:/app/result.csv
+     - ./app/execution_time.txt:/app/execution_time.txt
      
 networks:
   lab1:

@@ -1,0 +1,17 @@
+# Використовуємо офіційний образ Python в якості базового
+FROM python:3.9
+
+# Встановлюємо робочу директорію
+WORKDIR /app_data_loading
+
+# Завантаження потрібних залежностей для роботи Python та бази даних
+RUN apt-get update && apt-get install -y python3-pip
+RUN pip3 install --upgrade pip
+COPY requirements.txt /app_data_loading/
+RUN pip3 install -r requirements.txt
+
+# Додаємо файли додатку в репозиторій докеру
+COPY . /app_data_loading/
+
+# Запускаємо скрипт заповнення бази даних, її міграцій та запиту до неї
+CMD python3 main.py
